@@ -3,10 +3,13 @@
 
 Paddle::Paddle()
 {
-	shape.setSize(sf::Vector2f(200, 10));
-
+	width =600/4;
+	height = 10;
+	shape.setSize(sf::Vector2f(width, height));
+	x = 600/4+width/2;
+	y = 900-100;
 	shape.setFillColor(sf::Color::Magenta);
-	shape.setPosition(200, 800);
+	shape.setPosition(x, y);
 	
 }
 

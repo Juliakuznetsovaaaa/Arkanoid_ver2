@@ -146,6 +146,7 @@
     <ClInclude Include="..\..\Arcanoid_try2\Arcanoid_try2\Field.h" />
     <ClInclude Include="..\..\Arcanoid_try2\Arcanoid_try2\Game.h" />
     <ClInclude Include="Paddle.h" />
+    <ClInclude Include="Source.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

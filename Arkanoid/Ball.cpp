@@ -13,7 +13,7 @@ Ball::Ball()
 	speedX = 0;
 }
 
-void Ball::zeroSpeed( Paddle& paddle,  int windowWidth)
+void Ball::zeroSpeed(Paddle& paddle, int windowWidth)
 {
 	double spinBall = 2.52;
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
@@ -30,39 +30,42 @@ void Ball::zeroSpeed( Paddle& paddle,  int windowWidth)
 				shape.move(-spinBall, 0);
 		}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
-		speedX = spinBall;
-		speedY = -spinBall;
+		speedX = 1;
+		speedY = -1;
 		isStart = true;
 
 	}
-	
+
 
 }
 
-void Ball::move( Paddle& paddle, std::vector<sf::RectangleShape>& blocks, sf::RenderWindow& window)
+void Ball::move(Paddle& paddle, std::vector<sf::RectangleShape>& blocks, sf::RenderWindow& window)
 {
-	colossionWithBlock(blocks, window);
+	//colossionWithBlock(blocks, window);
 	double spinBall = 2.5;
 	if (isStart) {
-		
-		shape.move(speedX, speedY);
-		
+
+		shape.move(speedX*spinBall, speedY*spinBall);
+
 		if (shape.getPosition().x + shape.getRadius() >= 600 || shape.getPosition().x + shape.getRadius() <= 0) {
-			speedX = -speedX;
-			shape.move(speedX, speedY);
-			
+			speedX *= -1;
+			shape.move(speedX * spinBall, speedY * spinBall);
+
+
 		}
-			
-		
+
+
 		if (shape.getPosition().y + shape.getRadius() <= 0) {
-			speedY = -speedY;
-			shape.move(speedX, speedY);
-			
+			speedY *= -1;
+			shape.move(speedX * spinBall, speedY * spinBall);
+
+
 		}
-		if (shape.getPosition().x >= paddle.shape.getPosition().x-shape.getRadius() && shape.getPosition().x <= paddle.shape.getPosition().x+ paddle.shape.getSize().x+shape.getRadius() && shape.getPosition().y > paddle.shape.getPosition().y - paddle.shape.getSize().y - shape.getRadius() && shape.getPosition().y < paddle.shape.getPosition().y) {
-			speedY = -speedY;
-			shape.move(speedX, speedY);
-			
+		if (shape.getPosition().x >= paddle.shape.getPosition().x - shape.getRadius() && shape.getPosition().x <= paddle.shape.getPosition().x + paddle.shape.getSize().x + shape.getRadius() && shape.getPosition().y > paddle.shape.getPosition().y - paddle.shape.getSize().y - shape.getRadius() && shape.getPosition().y < paddle.shape.getPosition().y) {
+			speedY *= -1;
+			shape.move(speedX * spinBall, speedY * spinBall);
+
+
 		}
 		if (shape.getPosition().y > paddle.shape.getPosition().y) {
 			isStart = false;
@@ -72,24 +75,32 @@ void Ball::move( Paddle& paddle, std::vector<sf::RectangleShape>& blocks, sf::Re
 	}
 }
 
-void Ball::colossionWithBlock(std::vector<sf::RectangleShape>& blocks, sf::RenderWindow& window )
+//void Ball::colossionWithBlock(std::vector<sf::RectangleShape>& blocks, sf::RenderWindow& window)
+//{
+//	for (unsigned k = 0; k < blocks.size(); k++) {
+//		if (shape.getGlobalBounds().intersects(blocks[k].getGlobalBounds())) {
+//			blocks.erase(blocks.begin() + k);
+//			speedY *= -1;
+//			shape.move(speedX, speedY); 
+//			
+//		}
+//		
+//	}
+//	//blocks = blocks;
+//}
+void Ball::colossionWithBlock(std::vector<sf::RectangleShape>& blocks, sf::RenderWindow& window)
 {
-	std::vector<sf::RectangleShape> remainingBlocks;
-	
-	for(unsigned k = 0; k < blocks.size(); k++) {
+	for (unsigned k = 0; k < blocks.size(); k++) {
 		if (shape.getGlobalBounds().intersects(blocks[k].getGlobalBounds())) {
 			speedY = -speedY;
-			shape.move(speedX, speedY);
+			//shape.move(speedX, speedY);
+			blocks.erase(blocks.begin() + k);
 		}
-		else {
-			remainingBlocks.push_back(blocks[k]);
-		}
+
 	}
 
-	blocks = remainingBlocks;
 
 
-	
 }
 
 

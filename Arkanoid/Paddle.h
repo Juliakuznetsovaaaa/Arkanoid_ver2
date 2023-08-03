@@ -20,6 +20,8 @@ public:
 	float GetWidth(void); 
 	float GetPosX(void); 
 	float GetPosY(void); 
+	float getX() { return x; }
+	float getY() { return y; }
 	void Move(float userWindowWidth);
 	void Draw(std::shared_ptr <sf::RenderWindow> window); 
 };

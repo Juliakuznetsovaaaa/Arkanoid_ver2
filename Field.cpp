@@ -28,6 +28,21 @@ void Field::generateField(std::vector<sf::RectangleShape>& blocks)
 			blocks.push_back(Block::shape);*/
 		}
 }
+void Field::generateLife() {
+	float radius = 15;
+	for (auto i = 0; i < 3; i++) {
+		sf::CircleShape life;
+		life.setRadius(radius);
+		life.setPosition(i * 2 * radius, radius);
+		life.setColor(sf::Color::White);
+		lifes.push_back(life);
+	}
+}
+
+void Field::delLife()
+{
+	lifes.pop_back();
+}
 
 
 float Field::getWidth()

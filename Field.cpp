@@ -65,23 +65,53 @@ int Field::getBlockInCol()
 	return blocksInCol;
 }
 
+int Field::getHealthByColor(sf::Color color)
+{
+	switch (color) {
+	case colorArray[0]:
+		return -1;
+	case colorArray[1]:
+		return 1;
+	case colorArray[2]:
+		return 2; 
+	case colorArray[3]:
+			return 3;
+	default:
+		return 100;
+	}
+}
+
+bool Field::isHealthZero(sf::RectangleShape& block)
+{
+	int health = getHealthByColor(sf::block.getFillColor());
+	if (health < 0) {
+		return false; 
+	}
+	if (health > 1) {
+		sf::block.setFillColor(colorArray[health - 1]);
+		return false;
+	}
+	return true;
+}
+
+
 void Field::setBlockType(sf::Color& blockColor, int& blockHealth)
 {
 	switch (rand() % CHANCE) {
 	case 0:
 		blockColor = colorArray[0];
-		blockHealth = 3;
+		blockHealth = -1;
 		break;
 	case 1:
 		blockColor = colorArray[1];
-		blockHealth = 2;
+		blockHealth = 1;
 		break;
 	case 2:
 		blockColor = colorArray[2];
-		blockHealth = 1;
+		blockHealth = 2;
 		break;
 	default:
 		blockColor = colorArray[3];
-		blockHealth = -1;
+		blockHealth = 3;
 	}
 }

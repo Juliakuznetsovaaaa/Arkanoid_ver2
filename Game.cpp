@@ -44,6 +44,7 @@ void moveBall(Ball& ball, Paddle& paddle, int& kx, int& ky, int& p) {
 	}
 
 }
+
 //void bonusBallActive(vector<BonusDrop>& bonusBall, bool& is_bonusBal, vector<bool>& is_active, Vector2f& paddleCoordinates, Paddle& paddle, float* delBrick, bool& is_zaliz, int& count, float& paddelWeigth, double& spin, VertexArray& line, bool& is_line, bool& is_change_position) {
 //	int i = 0;
 //	for (auto& bBall : bonusBall) {
@@ -130,12 +131,15 @@ bool delLife(Vector2f& ballCoordinates, Paddle& paddle, int& ky, int& kx, Ball& 
 //		break;
 //	}
 //}
-void delBlock(Ball& ball, std::vector<RectangleShape>& bricks, Vector2f& ballCoordinates, float* delBrick, int& kx, int& ky) {
+void delBlock(Block& block, Ball& ball, std::vector<RectangleShape>& bricks, Vector2f& ballCoordinates, float* delBrick, int& kx, int& ky) {
 	for (unsigned k = 0; k < bricks.size(); k++) {
 		if (ball.shape.getGlobalBounds().intersects(bricks[k].getGlobalBounds())) {
 
 			ky = -ky;
-			bricks.erase(bricks.begin() + k);
+			if (block.processBlock(bricks[i]) {
+				bricks.erase(bricks.begin() + k);
+			}
+			
 		}
 
 	}
@@ -248,7 +252,7 @@ int Game::start() {
 			Vector2f b = ball.shape.getPosition();
 			
 			moveBall(ball, paddle, kx, ky, p);
-			is_zaliz, count, paddelWeigth, spin, line, is_line, is_change_position);*/
+			//is_zaliz, count, paddelWeigth, spin, line, is_line, is_change_position);*/
 			if (delLife(b, paddle, ky, kx, ball, p, l)) {
 				
 				field.delLife();

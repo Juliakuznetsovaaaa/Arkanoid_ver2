@@ -9,6 +9,7 @@ protected:
 	Field field;
 	Paddle paddle;
 	Ball ball;
+	Block block;
 public:
 	Game();
 	~Game() {};

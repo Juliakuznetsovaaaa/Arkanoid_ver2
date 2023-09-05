@@ -10,7 +10,7 @@ public:
 	std::vector<sf:: RectangleShape> blocks;
 	Field();
 	std::vector<sf::CircleShape> lifes;
-
+	Block block
 	~Field() {};
 	void generateField(std::vector<sf::RectangleShape>& blocks);
 	void generateLife();
@@ -19,5 +19,7 @@ public:
 	float getHeight();
 	int getBlockInRow();
 	int getBlockInCol();
+	int getHealthByColor(sf::Color color);
+	bool isHealthZero(sf::RectangleShape& block);
 	void setBlockType(sf::Color& blockColor, int& blockHealth);
 };

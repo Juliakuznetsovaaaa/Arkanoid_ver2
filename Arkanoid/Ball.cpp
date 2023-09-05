@@ -7,7 +7,7 @@
 
 Ball::Ball()
 {
-	shape.setRadius(15);
+	shape.setRadius(11);
 	shape.setFillColor(sf::Color::Red);
 	shape.setPosition(285, 765);
 	speedX = 0;
@@ -48,22 +48,33 @@ void Ball::move(Paddle& paddle, std::vector<sf::RectangleShape>& blocks, sf::Ren
 		shape.move(speedX*spinBall, speedY*spinBall);
 
 		if (shape.getPosition().x + shape.getRadius() >= 600 || shape.getPosition().x + shape.getRadius() <= 0) {
-			speedX *= -1;
-			shape.move(speedX * spinBall, speedY * spinBall);
+			double angle = atan2(speedY, speedX);
+			std::cout << "angel " << angle << std::endl;// вычисляем угол направления в радианах
+			double newAngle = angle + tan(angle); // вычисляем новый угол, увеличивая его на тангенс текущего угла
+			double newSpeedX = cos(newAngle); // вычисляем новые значения скорости по осям X и Y
+			double newSpeedY = sin(newAngle);
+			shape.move(newSpeedX * spinBall, newSpeedY * spinBall); // перемещаем шарик
 
 
 		}
 
 
 		if (shape.getPosition().y + shape.getRadius() <= 0) {
-			speedY *= -1;
-			shape.move(speedX * spinBall, speedY * spinBall);
+			/*speedY *= -1;
+			shape.move(speedX * spinBall, speedY * spinBall);*/
+			double angle = atan2(speedY, speedX);
+			std::cout << "angel " << angle << std::endl;// вычисляем угол направления в радианах
+			double newAngle = angle + tan(angle); // вычисляем новый угол, увеличивая его на тангенс текущего угла
+			double newSpeedX = cos(newAngle); // вычисляем новые значения скорости по осям X и Y
+			double newSpeedY = sin(newAngle);
+			shape.move(newSpeedX * spinBall, newSpeedY * spinBall); // перемещаем шарик
+
 
 
 		}
 		if (shape.getPosition().x >= paddle.shape.getPosition().x - shape.getRadius() && shape.getPosition().x <= paddle.shape.getPosition().x + paddle.shape.getSize().x + shape.getRadius() && shape.getPosition().y > paddle.shape.getPosition().y - paddle.shape.getSize().y - shape.getRadius() && shape.getPosition().y < paddle.shape.getPosition().y) {
-			speedY *= -1;
-			shape.move(speedX * spinBall, speedY * spinBall);
+			/*speedY *= -1;
+			shape.move(speedX * spinBall, speedY * spinBall);*/
 
 
 		}

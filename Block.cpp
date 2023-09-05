@@ -18,10 +18,33 @@ Block::Block(float blockHeight, float blockWidth, float posX, float posY, int bl
 }
 
 
-
-void Block::updateHealth(int new_health)
+bool Block:: processBlock(Block& block) {
+	int health = block.getHealth(); // получаем здоровье блока
+	if (health < 0) {
+		return false;
+	}
+	if (health > 1) {
+		block.setHealth(health - 1);
+		block.setFillColor(getColorForHealth(health - 1));
+		return false;
+	}
+	return true;
+}
+sf::Color Block::getColorForHealth(int health) {
+	switch (health) {
+	case 1:
+		return sf::Color::RED;
+	case 2:
+		return sf::Color::YELLOW;
+	case 3:
+		return sf::Color::BlUE;
+	default:
+		return sf::Color::Green;
+	}
+}
+void Block::setHealth(int new_health)
 {
-	health += new_health;
+	health = new_health;
 }
 
 float Block::getHeight()
@@ -42,6 +65,11 @@ float Block::getPosX()
 float Block::getPosY()
 {
 	return y;
+}
+
+int Block::getHealth()
+{
+	return health;
 }
 
 sf::Color Block::getColor()

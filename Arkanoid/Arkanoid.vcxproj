@@ -138,6 +138,7 @@
     <ClCompile Include="..\..\Arcanoid_try2\Arcanoid_try2\Game.cpp" />
     <ClCompile Include="Arkanoid.cpp" />
     <ClCompile Include="Ball.cpp" />
+    <ClCompile Include="Bonus.cpp" />
     <ClCompile Include="Paddle.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -145,6 +146,7 @@
     <ClInclude Include="..\..\Arcanoid_try2\Arcanoid_try2\Block.h" />
     <ClInclude Include="..\..\Arcanoid_try2\Arcanoid_try2\Field.h" />
     <ClInclude Include="..\..\Arcanoid_try2\Arcanoid_try2\Game.h" />
+    <ClInclude Include="Bonus.h" />
     <ClInclude Include="Paddle.h" />
     <ClInclude Include="Source.h" />
   </ItemGroup>

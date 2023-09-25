@@ -5,10 +5,7 @@
 class Paddle{ 
 protected:
 	float height, width;
-	//float defaultWidth;
 	float x, y;
-	//float defaultX;
-	//unsigned ballStick;
 
 public:
 	
@@ -22,6 +19,4 @@ public:
 	float GetPosY(void); 
 	float getX() { return x; }
 	float getY() { return y; }
-	void Move(float userWindowWidth);
-	void Draw(std::shared_ptr <sf::RenderWindow> window); 
 };

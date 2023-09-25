@@ -1,6 +1,6 @@
 #include"Field.h"
-#include "../../Arkanoid/Arkanoid/Paddle.h"
-#include "../../Arcanoid_try2/Arcanoid_try2/Ball.h"
+#include "Paddle.h"
+#include "Ball.h"
 
 class Game {
 protected:
